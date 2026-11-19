@@ -31,7 +31,7 @@ Three tiers, from the exam to flight hardware. Every world starts with a one-min
 | Flight Hardware | **8 · Radiation** | Watch a particle flip a copy, vote with TMR, pay the voter's delay, find when a glitch gets latched. | SEU, TMR, SET latching, reliability |
 | Flight Hardware | **Final Boss · Flight Readiness Review** | 120 seconds, every topic mixed. | Everything |
 
-**Question Jungle.** Each tier also has drill trails (10 levels each) built from a question bank of about 160 generators and 240 hand-checked questions: setup/hold traps, multi-path Fmax, clocking and latches, pipelining, report reading, corners and OCV, interview-style puzzles, clock domain crossing, and radiation. Every generator has a machine-checked guard, so the random numbers always make a sensible question with four different answers. A wrong answer shows the exact mistake that leads to it.
+**Question Jungle.** Each tier also has drill trails (10 levels each) built from a question bank of 243 generators and 379 fixed questions, plus 242 "trap" notes shown before each trail: setup/hold traps, multi-path Fmax, clocking and latches, pipelining, report reading, corners and OCV, interview-style puzzles, clock domain crossing, and radiation. Every prompt states its assumptions (ideal clock, same-edge path, worst-case model, and so on), so each question has exactly one defensible answer. Every generator has a machine-checked guard, so the random numbers always make a sensible question with four different answers. A wrong answer shows the exact mistake that leads to it.
 
 The first levels use the circuits from the ECE 3300 lectures and Midterm 2. After that, generators build new circuits and new numbers every time.
 
