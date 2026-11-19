@@ -16,22 +16,36 @@ Every timing question is a race. When the clock ticks, new data leaves FF1 and r
 
 ## The worlds
 
-| World | What you do | What it teaches |
-|---|---|---|
-| **1 · Pathfinder** | Tap the gates on the slowest route (setup) or the fastest route (hold). | Picking the right path, with max or min delays |
-| **2 · Beat the Clock** | Drag the clock period and press FIRE. The data races the next edge. Find the exact minimum. | Setup slack, clock skew, Fmax |
-| **3 · Too Fast!** | Drop delay buffers into slots to fix a hold violation without breaking setup. | Hold slack and the setup/hold trade-off |
-| **Boss · Exam Mode** | 90 seconds of exam-style questions on random circuits, with streak multipliers. | Speed and accuracy on the formulas |
+Three tiers, from the exam to flight hardware. Every world starts with a one-minute tutorial (a story, a rhyme to remember the equation, the recipe, and one practice question). Press **T** for the tutorial or **Enter** to jump straight to the challenge.
 
-The first levels use the circuits from the ECE 3300 lectures and Midterm 2. After that, a generator builds a new circuit every time, with 1 to 4 gate columns, AND/OR/XOR/NAND/NOR/NOT gates, fan-out, side inputs, fast bypass wires and clock-buffer skew, so there is always another one to play. Every generated level is checked: pathfinder routes have exactly one answer, and hold puzzles always start failing and always have a fix.
+| Tier | World | What you do | What it teaches |
+|---|---|---|---|
+| Campus | **1 · Pathfinder** | Tap the gates on the slowest route (setup) or the fastest route (hold). | Picking the right path, with max or min delays |
+| Campus | **2 · Beat the Clock** | Drag the clock period and press FIRE. The data races the next edge. | Setup slack, clock skew, Fmax |
+| Campus | **3 · Too Fast!** | Drop delay buffers into slots to fix hold without breaking setup. | Hold slack and the setup/hold trade-off |
+| Campus | **Boss · Exam Mode** | 90 seconds of exam-style questions on random circuits. | Speed and accuracy on the formulas |
+| Industry (★ 30) | **4 · Pipeline It** | Drop pipeline registers into a chain so every stage fits the clock, with as few as possible. | Pipelining, latency vs throughput |
+| Industry | **5 · Read the Report** | Fill in arrival, required and slack in a timing report, then WNS and TNS. | Reading static timing reports |
+| Industry | **6 · Hot, Cold & Shaky** | Check setup at the slow corner with jitter and hold at the fast corner. | PVT corners, clock jitter |
+| Flight Hardware (★ 70) | **7 · Two Clocks** | Add synchronizer flip-flops until the MTBF beats the mission; cross buses in Gray code. | Metastability, MTBF, clock domain crossing |
+| Flight Hardware | **8 · Radiation** | Watch a particle flip a copy, vote with TMR, pay the voter's delay, find when a glitch gets latched. | SEU, TMR, SET latching, reliability |
+| Flight Hardware | **Final Boss · Flight Readiness Review** | 120 seconds, every topic mixed. | Everything |
+
+**Question Jungle.** Each tier also has drill trails (10 levels each) built from a question bank of about 160 generators and 240 hand-checked questions: setup/hold traps, multi-path Fmax, clocking and latches, pipelining, report reading, corners and OCV, interview-style puzzles, clock domain crossing, and radiation. Every generator has a machine-checked guard, so the random numbers always make a sensible question with four different answers. A wrong answer shows the exact mistake that leads to it.
+
+The first levels use the circuits from the ECE 3300 lectures and Midterm 2. After that, generators build new circuits and new numbers every time.
 
 ![Too Fast!](assets/screen_hold.jpg)
 
-## Stars, worlds and ranks
+![Pipeline It](assets/screen_pipe.jpg)
 
-- Each level gives up to 3 stars. In Beat the Clock, 3 stars means the exact minimum period. In Too Fast!, it means the fewest buffers.
-- World 2 opens at ★ 6 and World 3 opens at ★ 15.
-- Your rank rises with your stars: Intern → Junior Engineer → Timing Engineer → Senior Engineer → Signoff Lead → Chief Architect.
+![Two Clocks](assets/screen_mtbf.jpg)
+
+## Stars, tiers and ranks
+
+- Each level gives up to 3 stars. 3 stars means the best possible answer: the exact minimum period, the fewest buffers, the fewest pipeline registers, the fewest synchronizer flops, or every question right.
+- Industry opens at ★ 30 and Flight Hardware at ★ 70.
+- Ranks: Intern → Junior Engineer → Timing Engineer → Senior Engineer → Signoff Lead → Principal Engineer → Flight Hardware Engineer → Mission Lead → Chief Architect → Fellow.
 - Progress is saved in your own browser. Nothing is sent anywhere.
 
 **For instructors:** add `#unlock` to the address (for example `https://mealycpp.github.io/tutorials/race-the-clock/#unlock`) to open every world and level.
@@ -44,6 +58,10 @@ These are the same formulas printed on the ECE 3300 exams:
 Setup slack = T − ( t_cq,max + t_c,max + t_su − t_skew )
 Hold slack  = t_cq,min + t_c,min − t_skew − t_h
 Fmax        = 1 / ( t_cq,max + t_c,max + t_su − t_skew )
+Pipeline    T_min = t_cq + slowest stage + t_su
+Report      slack = (T + dst clock − uncertainty − t_su) − (src clock + t_cq + logic + net)
+Synchronizer t_r = (n − 1)(T_clk − t_cq − t_su),  MTBF = e^(t_r/τ) / (T0 · f_clk · f_data)
+TMR         T_min = t_cq + t_c + t_voter + t_su
 ```
 
 Clock buffers on the capture side (FF2) make t_skew positive. Wires take 0 ns. Each gate shows its min / max delay in ns.
