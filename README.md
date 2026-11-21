@@ -1,7 +1,7 @@
 <p align="center"><img src="assets/rscl_seal.png" width="180" alt="RSCL seal"></p>
 
 <h1 align="center">Race the Clock</h1>
-<p align="center"><b>The ECE 3300 timing game: data versus the clock edge.</b><br>
+<p align="center"><b>The timing game: data versus the clock edge.</b><br>
 Reconfigurable Space Computing Lab (RSCL) · Cal Poly Pomona · Prof. Mohamed El-Hadedy</p>
 
 <p align="center"><a href="https://mealycpp.github.io/tutorials/race-the-clock/"><b>▶ Play in your browser</b></a> · <a href="https://mealycpp.github.io/tutorials/race-the-clock/trailer.html">Watch the trailer</a></p>
@@ -33,7 +33,7 @@ Three tiers, from the exam to flight hardware. Every world starts with a one-min
 
 **Question Jungle.** Each tier also has drill trails (10 levels each) built from a question bank of 243 generators and 379 fixed questions, plus 242 "trap" notes shown before each trail: setup/hold traps, multi-path Fmax, clocking and latches, pipelining, report reading, corners and OCV, interview-style puzzles, clock domain crossing, and radiation. Every prompt states its assumptions (ideal clock, same-edge path, worst-case model, and so on), so each question has exactly one defensible answer. Every generator has a machine-checked guard, so the random numbers always make a sensible question with four different answers. A wrong answer shows the exact mistake that leads to it.
 
-The first levels use the circuits from the ECE 3300 lectures and Midterm 2. After that, generators build new circuits and new numbers every time.
+The first levels use classic hand-drawn circuits. After that, generators build new circuits and new numbers every time.
 
 ![Too Fast!](assets/screen_hold.jpg)
 
@@ -52,7 +52,7 @@ The first levels use the circuits from the ECE 3300 lectures and Midterm 2. Afte
 
 ## The formulas the game uses
 
-These are the same formulas printed on the ECE 3300 exams:
+These are the standard formulas used in every digital design course:
 
 ```
 Setup slack = T − ( t_cq,max + t_c,max + t_su − t_skew )
@@ -85,4 +85,14 @@ AFRL (Agreement FA8650-24-2-2403) · U.S. DoD (Award W911NF-24-1-0265) · U.S. N
 
 ---
 
-ECE 3300 · Digital Circuit Design Using Verilog · Reconfigurable Space Computing Lab, Cal Poly Pomona · [github.com/mealycpp](https://github.com/mealycpp) · [recoiot.com](https://recoiot.com)
+Prof. Mohamed El-Hadedy · Reconfigurable Space Computing Lab, Cal Poly Pomona · [github.com/mealycpp](https://github.com/mealycpp) · [recoiot.com](https://recoiot.com)
+
+## What's new in v3.5
+
+- **3D galaxy map.** The home screen is a galaxy: each tier is a star system and each world is a planet. Drag to fly around, tap a planet to open its world.
+- **3D race view.** Every race can switch to a 3D board with real gate symbols (AND, OR, XOR, NAND, NOR, NOT) that fill with gold as the data runs. 2D stays the default.
+- **Relay Race (World 4).** A multi-stage world: one clock, three or four flip-flops in a chain. Find the leg that sets the clock, run the relay at full speed, and check hold at every handover.
+- **Space everywhere.** A living 3D starfield behind every screen, glass panels, warp jumps between screens, a spinning planet for each world, and holographic question figures.
+- **Proper flip-flops.** D, Q, Q̄ with its bubble, and the CLK edge wedge, in 2D, 3D and Relay Race.
+- **Opening crawl.** A 3D space intro with the RSCL seal, an original score and narration; returning players get a short cinematic entrance.
+- **Phone app.** Install it from the site (Android: Install app; iPhone: Share, then Add to Home Screen). It works offline.
